@@ -1,0 +1,51 @@
+<%
+	subset=params[:name]
+	subset="All" if params[:name]==nil 
+%>
+<h1>Country Listing (<%=subset %>)</h1>
+<table class="data_table">
+	
+  	<tr>		
+  		<% for column in Country.content_columns %>
+    			<th><%= column.human_name %></th>
+  		<% end %>
+		<th align="left">Region</th>		
+  	</tr>
+  
+<%  idx=0
+    for country in @countries 
+    idx+=1 	
+%>
+  <tr class="line_style<%= idx.modulo(2)%>">
+
+  	<% for column in Country.content_columns %>
+    		<td align="left"><%= link_to country.send(column.name), :controller => 'locations' ,:action => 'list_country', :name => country.send(column.name) %></td>
+  	<% end %>
+    <td align="left"><%= country.region.name %></td>
+  </tr>
+<% end %>
+</table>
+
+<table class="button_table">
+	<tr>
+          <td align="left" width="33%"><%= link_to image_tag ("/images/prev.png", :name =>'prev'),
+								{ :page => @country_pages.current.next},
+								{
+									:onmouseover => "imgChange('prev','/images/prev_o.png')",
+									:onmouseout =>  "imgChange('prev','/images/prev.png')" 
+								} if @country_pages.current.previous 
+						    %>&nbsp;
+	    </td>
+          <td>&nbsp;</td>
+	    <td align="right" width="34%"><%= link_to image_tag (   "/images/next.png", :name =>'next'),
+								{ :page => @country_pages.current.next},
+								{
+									:onmouseover => "imgChange('next','/images/next_o.png')",
+									:onmouseout =>  "imgChange('next','/images/next.png')" 
+								} if @country_pages.current.next 
+						    %>&nbsp;
+	    </td>
+
+      </tr>
+</table>
+<br />

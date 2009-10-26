@@ -1,0 +1,15 @@
+<h1>New Employee</h1>
+
+<% form_tag '/employees/create' do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag "submit",
+        :src => "/images/submit.png",
+        :type => "image",
+        :name => "submit",
+        :id => "submit_form",
+        :alt => "submit",
+        :onmouseover => "swapImg2('submit_form','/images/submit_o.png')",
+        :onmouseout =>  "swapImg2('submit_form','/images/submit.png')"
+  %>
+<% end %>
+

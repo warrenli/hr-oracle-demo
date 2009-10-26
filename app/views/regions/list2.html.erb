@@ -1,0 +1,47 @@
+<h1>Region Listing</h1>
+
+<table class="data_table">
+  <tr style="background-color=yellow">
+  <% for column in Region.content_columns %>
+    <th align="left"><%= column.human_name %></th>
+  <% end %>
+  </tr>
+
+<%
+  idx=0 
+  for region in @regions 
+  idx+=1
+%>
+  <tr class="line_style<%= idx.modulo(2) %>">
+  <% for column in Region.content_columns %>
+    <td align="left"> <%= link_to region.send(column.name), :controller => 'countries' ,:action => 'list_region', :name => region.send(column.name) %></td>
+  <% end %>
+  </tr>
+<% end %>
+</table>
+
+
+<table class="button_table">
+	<tr>
+          <td align="left" width="33%"><%= link_to image_tag ("/images/prev.png", :name =>'prev'),
+								{ :page => @region_pages.current.next},
+								{
+									:onmouseover => "imgChange('prev','/images/prev_o.png')",
+									:onmouseout =>  "imgChange('prev','/images/prev.png')" 
+								} if @region_pages.current.previous 
+						    %>&nbsp;
+	    </td>
+	    <td align="center" width="33%">&nbsp;</td>
+          <td align="right" width="34%"><%= link_to image_tag (   "/images/next.png", :name =>'next'),
+								{ :page => @region_pages.current.next},
+								{
+									:onmouseover => "imgChange('next','/images/next_o.png')",
+									:onmouseout =>  "imgChange('next','/images/next.png')" 
+								} if @region_pages.current.next 
+						    %>&nbsp;
+	    </td>
+	    
+      </tr>
+</table>
+<br />
+

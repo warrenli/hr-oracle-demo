@@ -1,0 +1,36 @@
+<h1>Employee Hierarchy</h1>
+<p>
+  Click on a name to drill down through the hierarchy.
+</p>
+<% for x in @nodes%>
+  <% if x.next_level == nil  %>
+    <span>
+    <img src="/images/node_end.png">
+    <%= x.employee_name %>
+    <br>
+    </span>
+  <% else %>
+    <% if x.hierarchy_level < x.next_level %>
+    <span class="trigger" onClick="showBranch('branch<%=x.seq %>');swapImg('folder<%=x.seq %>')">
+    <img src="/images/node_close.png" border="0" id="folder<%=x.seq %>"> 
+       <%= x.employee_name %>
+    <br>
+    </span>
+    <span class="branch" id="branch<%=x.seq%>">      
+    <% end %>
+
+    <% if x.hierarchy_level > x.next_level %>
+    <img src="/images/node_end.png">
+      <%= x.employee_name %>
+    <br>
+    </span>
+    <% end %>
+
+    <% if x.hierarchy_level == x.next_level %>
+    <img src="/images/node_end.png">
+      <%= x.employee_name %>
+    <br>
+    <% end %>
+  <% end %>
+<% end %>
+

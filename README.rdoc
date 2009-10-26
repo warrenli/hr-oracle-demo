@@ -1,0 +1,8 @@
+= Example Rails Application
+
+HR / Ruby on Rails Demo
+
+originate from {HR Schema on Rails}[http://www.oracle.com/technology/pub/articles/saternos-rails.html]
+
+
+

@@ -1,0 +1,118 @@
+<html>
+<head>
+  <title>Application: <%= controller.action_name %></title>
+  <%= stylesheet_link_tag 'scaffold' %>
+  <%= javascript_include_tag "prototype", "effects", "cs" %>
+</head>
+<body> 
+
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+ <tr><td height="105"align="center">
+	<%=image_tag ("/images/oralogo_small.gif", :onclick => "new Effect.Fade(this)" ) %>
+	</td><td align="center">
+	<h2>The HR / Ruby on Rails Demo<h2></td> 
+ <tr>
+  <td align="left" valign="top" width="5%" bgcolor="#660099">
+  <td align="left" valign="middle" bgcolor="#660099" height="25" width="94%">&nbsp;</td>
+ </tr>
+</table>
+
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="0"  bgcolor="#EFEFEF">
+ <tr>
+   <td background="/images/StandardQuickSearchShad.gif" height="6"></td></tr><tr>
+   <td valign="top" align="center" bgcolor="#EFEFEF">
+   <table width="100%" border="0" cellspacing="0" cellpadding="0"> <tr><td align="center">
+    </td></tr></table>
+  </td></tr><tr>
+   <td background="/images/StandardQuickSearchUnderShad.gif" height="4"></td></tr>
+</table>
+
+<table border="0" cellspacing="0" cellpadding="5" width="100%">
+</tr>
+	<tr>  <td width="180" bgcolor="#EFEFEF" valign="top">
+			<table border="0">
+				<tr><td align="center">
+					<%=image_tag ("/images/rails.png", :size=>"60x90", :onclick => "new Effect.Squish(this)"  ) %>
+				</td><tr><tr><td>
+				</td><tr rowspan="3"><tr><td>
+				&nbsp;
+				</td><tr><tr><td>
+
+				<%= link_to "Main", {
+					:controller => "main",
+					:action => "index"					
+					}
+			 	%>
+				</td><tr><tr><td>
+				<%= link_to "Region Listing", {
+					:controller => "regions",
+					:action => "list"					
+					}
+			 	%>
+				</td><tr><tr><td>
+				<%= link_to "Country Listing", {
+					:controller => "countries",
+					:action => "list"					
+					}
+			 	%>
+				</td><tr><tr><td>
+				<%= link_to "Location Listing", {
+					:controller => "locations",
+					:action => "list"					
+					}
+			 	%>
+				</td><tr><tr><td>
+				<%= link_to "Department Listing", {
+					:controller => "departments",
+					:action => "list"					
+					}
+			 	%>
+				</td><tr><tr><td>
+				<%= link_to "Employee Listing", {
+					:controller => "employees",
+					:action => "list"					
+					}
+			 	%>
+				</td><tr><tr><td>
+				<%= link_to "Compensation Report", {
+					:controller => "regions",
+					:action => "regional_compensation_report"					
+					}
+			 	%>
+				</td><tr><tr><td>
+				<%= link_to "Employee Hierarchy", {
+					:controller => "employees",
+					:action => "corporate_hierarchy_tree"					
+					}
+			 	%>
+				</td><tr><tr><td>
+				<%= link_to "About This Site", {
+					:controller => "main",
+					:action => "about_this_site"					
+					}
+			 	%>
+
+				</td><tr>
+
+			</table>
+		</td>
+		<td>
+			<br/>
+			<p style="color: green"><%= flash[:notice] %></p>
+			<%= @content_for_layout %>
+		<td>
+	<tr>
+	<tr><td colspan="3"><hr/></td></td>
+	<tr height="35">
+		<td>&nbsp;</td>
+		<td align="center">
+				MVC Web Framework by <a href="http://www.rubyonrails.org/">Ruby on Rails</a>.<br/>
+				Database by <a href="http://www.oracle.com/">Oracle</a>.
+		</td>
+		<td>&nbsp;</td>
+
+	</tr>
+</table>
+
+</body>
+</html>

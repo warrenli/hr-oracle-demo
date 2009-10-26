@@ -1,0 +1,25 @@
+<h1>Schema Report</h1>
+<div align="center">
+<table cellspacing="4" border="0">
+  <tr>
+    <th align="left">View Name</th>
+    <th align="left">Column Name</th>
+    <th align="left">Column Type</th>
+    <th align="right">Nullable</th>
+  </tr>
+
+  <% for x in @report_lines %>
+    <% if x.table_name!= nil %>
+     <tr><td colspan="4">&nbsp</td></tr>
+    <% end %>
+    <tr>      
+        <td><%= x.table_name %></td>
+        <td><%= x.column_name %></td>
+        <td><%= x.column_type %></td>
+        <td><%= x.nullable %></td>
+    </tr>
+  <% end %>
+
+</table>
+</div>
+</br>

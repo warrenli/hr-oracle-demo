@@ -1,0 +1,42 @@
+<h1>Regional Compensation Report</h1>
+<div align="center">
+<table cellspacing="0" border="0">
+  <tr>
+    <th align="left">Region Name</th>
+    <th align="left">Country Name</th>
+    <th align="left">State</th>
+    <th align="right">Number of Employees</th>
+    <th align="right">Salary Total</th>
+  </tr>
+  <tr><td colspan="5">&nbsp</td></tr>
+
+  <% skipline = ""
+     style=""
+     for x in @report_lines %>
+  <%   if x.state_province=="Total" 
+         skipline = "<tr><td colspan=\"5\">&nbsp;</td></tr>"
+         style="TotalLine"
+         if x.country_name==nil
+           style="GrandTotalLine"
+         end
+  %>
+  <tr><td colspan="5"><hr/></td></tr>
+  <% 
+       else
+         skipline = ""
+         style=""
+       end
+  %>
+  <tr class="<%=style%>">
+    <td class="<%=style%>"><%= x.region_name %></td>
+    <td class="<%=style%>"><%= x.country_name %></td>
+    <td class="<%=style%>"><%= x.state_province %></td>
+    <td align="right" class="<%=style%>"><%= number_with_precision( x.total_employees, :precision=>0 )%></td>
+    <td align="right" class="<%=style%>"><%= number_to_currency( x.total_salary) %></td>
+  </tr>
+  <%= skipline %>
+ <% end %>
+
+</table>
+</div>
+</br>

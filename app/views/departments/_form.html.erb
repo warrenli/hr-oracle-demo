@@ -1,0 +1,15 @@
+<%= error_messages_for 'department' %>
+
+<!--[form:department]-->
+<table>
+<tr>
+	<td><label for="department_department_name">Department name</label></td>
+	<td><%= text_field 'department', 'name'  %></td>
+</tr>
+<tr>
+	<td><label for="employee_manager">Manager</label></td>
+	<td><%= collection_select("department", "manager_id" , @managers, "id", "last_name", {:include_blank => true}) %></td>
+<tr>
+</table>
+<!--[eoform:department]-->
+

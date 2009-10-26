@@ -1,0 +1,91 @@
+<%
+	subset=params[:name]
+	subset="All" if params[:name]==nil 
+%>
+<h1>Department Listing (<%=subset %>)</h1>
+
+<table class="data_table">
+
+  <tr>
+  <% for column in Department.content_columns %>
+    	<th align="left"><%= column.human_name %></th>
+  <% end %>
+	<th align="left">Manager</th>
+	<th colspan="2">&nbsp;</th>	
+  </tr>
+  
+<% idx=0
+   for department in @departments 
+   idx+=1	
+%>
+
+  <tr class="line_style<%= idx.modulo(2)%>">
+
+  <% for column in Department.content_columns %>
+    	<td align="left"><%=h department.send(column.name) %></td>
+  <% end %>
+
+    <td align="left"><% if department.manager != nil %>
+		<%= link_to department.manager.first_name + " " + department.manager.last_name, :controller => 'employees' ,:action => 'list_department', :id => department.manager.id %>
+        <% else %>
+		&nbsp;
+	  <% end %> 
+    </td>
+
+	<td>
+		<%= link_to image_tag ("/images/edit.png", :name =>'edit'+idx.to_s), 
+							     {:action => 'edit', :id => department},
+                                               {
+									:onmouseover => "imgChange('edit"+idx.to_s+"','/images/edit_o.png')",
+									:onmouseout =>  "imgChange('edit"+idx.to_s+"','/images/edit.png')" 
+							     } 
+ 	  %>
+	</td>
+      <td>
+		<%= link_to image_tag ("/images/delete.png", :name =>'delete'+idx.to_s), 
+							     { :action => 'destroy', :id => department }, 
+                                               {
+									:confirm => 'Are you sure?' ,
+									:onmouseover => "imgChange('delete"+idx.to_s+"','/images/delete_o.png')",
+									:onmouseout =>  "imgChange('delete"+idx.to_s+"','/images/delete.png')" 
+							     } 
+
+	  %>   
+	</td>
+    
+
+  </tr>
+<% end %>
+</table>
+
+<table class="button_table">
+	<tr>
+          <td align="left" width="33%"><%= link_to image_tag ("/images/prev.png", :name =>'prev'),
+								{ :page => @department_pages.current.next},
+								{
+									:onmouseover => "imgChange('prev','/images/prev_o.png')",
+									:onmouseout =>  "imgChange('prev','/images/prev.png')" 
+								} if @department_pages.current.previous 
+						    %>&nbsp;
+	    </td>
+	    <td align="center" width="33%"><%= link_to image_tag ("/images/add_a_department.png", :name =>'add'), 
+											{:action => 'new'},
+											{
+											:onmouseover => "imgChange('add','/images/add_a_department_o.png')",
+											:onmouseout =>  "imgChange('add','/images/add_a_department.png')" 
+											}
+						      %></td>
+          <td align="right" width="34%"><%= link_to image_tag (   "/images/next.png", :name =>'next'),
+								{ :page => @department_pages.current.next},
+								{
+									:onmouseover => "imgChange('next','/images/next_o.png')",
+									:onmouseout =>  "imgChange('next','/images/next.png')" 
+								} if @department_pages.current.next 
+						    %>&nbsp;
+	    </td>
+	    
+      </tr>
+</table>
+
+
+

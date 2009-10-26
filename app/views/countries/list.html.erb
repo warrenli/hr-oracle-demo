@@ -1,0 +1,36 @@
+<%
+  subset=params[:name]
+  subset="All" if params[:name]==nil 
+%>
+<h1>Country Listing (<%=subset %>)</h1>
+<table class="data_table">
+
+  <tr>
+  	<% for column in Country.content_columns %>
+       <th><%= column.human_name %></th>
+  	<% end %>
+    <th align="left">Region</th>
+  </tr>
+  
+<%  idx=0
+    for country in @countries
+    idx+=1
+%>
+  <tr class="line_style<%= idx.modulo(2)%>">
+
+  <% for column in Country.content_columns %>
+    <td align="left">
+    <%= link_to country.send(column.name), :controller => 'locations' ,:action => 'list_country', 
+        :name => country.send(column.name) %>
+    </td>
+  <% end %>
+
+    <td align="left"><%= country.region.name %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<br />
+<%= will_paginate @countries %>
+<br />

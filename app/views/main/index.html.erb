@@ -1,0 +1,21 @@
+<h1>Welcome to the HR Demo</h1>
+
+<table border="0">
+  <tr><td>	<p>
+		Welcome to the Oracle HR /Ruby on Rails Web Application.  
+		</p>
+		<p>
+		The web application is built on Oracle Database Views that serve as an interface 
+		to the underlying tables.  
+		<%= link_to "These views", {
+					:controller => "regions",
+					:action => "schema_report"					
+					}
+			 	%>
+		are (inheritantly) updatable, and have been
+		used to provide names that conform to the expectations of Ruby on Rails naming
+		conventions.
+		</p>
+</td></tr>
+</table>
+

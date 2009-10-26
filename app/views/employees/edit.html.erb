@@ -1,0 +1,15 @@
+<h1>Editing Employee</h1>
+
+<% form_tag :action => 'update', :id => @employee do %>
+  <%= hidden_field_tag 'id', @employee.id  %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag "submit",
+        :src => "/images/submit.png",
+        :type => "image",
+        :name => "submit",
+        :id => "submit_form",
+        :alt => "submit",
+        :onmouseover => "swapImg2('submit_form','/images/submit_o.png')",
+        :onmouseout =>  "swapImg2('submit_form','/images/submit.png')"
+  %>
+<% end %>

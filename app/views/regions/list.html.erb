@@ -1,0 +1,30 @@
+<h1>Region Listing2</h1>
+
+<table class="data_table">
+  <tr style="background-color=yellow">
+  <% for column in Region.content_columns %>
+    <th align="left"><%= column.human_name %></th>
+  <% end %>
+  </tr>
+
+<%
+  idx=0 
+  for region in @regions 
+  idx+=1
+%>
+  <tr class="line_style<%= idx.modulo(2) %>">
+  <% for column in Region.content_columns %>
+    <td align="left">
+      <%= link_to region.send(column.name), :controller => 'countries' ,
+            :action => 'list_region', :name => region.send(column.name) %>
+    </td>
+  <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<br />
+<%= will_paginate @regions %>
+<br />
+

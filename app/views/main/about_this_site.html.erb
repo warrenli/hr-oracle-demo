@@ -1,0 +1,54 @@
+<h1>About This Site</h1>
+
+<table border="0">
+  <tr><td>  <p>
+    This site is built using the Ruby on Rails Web Application framework.  The framework 
+    is based on the Model-View-Controller pattern which provides a clean separation of 
+    responsibilites between the software components that make up the site.
+    </p>
+    <p>
+      <h3>Database Schema</h3>
+      
+      <table align="center">
+        <tr>
+        <td colspan="2">
+          <%= image_tag("/images/hr_erd.JPG", :onclick => "new Effect.Squish(this)" ) %>
+        </td>
+        </tr>
+      </table>
+      A    <%= link_to "separate schema", {
+          :controller => "regions",
+          :action => "schema_report"          
+          }
+         %>
+       is used to serve as the rails application database.  It provides views built on the HR schema 
+      that are relevant to the application.  Not every table in the HR schema is accessed to it&quot;s fullest extent by 
+      the application.   The expectation would be that other applications and processes would be used to maintain the database.
+      There are views built upon these underlying tables that use Ror naming conventions related to table and columns.  
+    </p>
+
+
+    <p>
+      <h3>Model</h3>
+      The model represents data and the rules that govern access to and updates of this data. 
+      <i>Active Record</i> is the object-relational mapping layer provided with rails.  In order to 
+      interact with an Oracle Database, Active Record uses the Ruby OCI8 package which communicates
+      through the traditional Oracle Client Software or through The Oracle Instance Client Software
+    </p>
+    <p>
+      <h3>View</h3>
+      The view displays the contents of a model. It accesses data through the model and presents the data to the user. 
+      The views in this demonstration consist of basic html interspersed with Ruby scriplets.  The files
+      are named with an .rhtml extention. The Ruby <i>Action View</i> module serves as the engine which translates
+      these files into html documents that are rendered by the web browser
+    </p>
+    <p>
+      <h3>Controller</h3>
+      The controller maps interactions with the view to actions that are performed by the model.  
+      <i>Action Controller</i> is the module that processes the incoming requests and coordinates the 
+      communications between the views and the model.
+    </p>
+    
+</td></tr>
+</table>
+

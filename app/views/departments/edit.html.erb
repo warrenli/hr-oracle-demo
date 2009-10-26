@@ -1,0 +1,15 @@
+<h1>Editing department</h1>
+
+<% form_tag '/departments/update' do %>
+  <%= hidden_field_tag 'id', @department.id  %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag "submit",
+        :src => "/images/submit.png",
+        :type => "image",
+        :name => "submit",
+        :id => "submit_form",
+        :alt => "submit",
+        :onmouseover => "swapImg2('submit_form','/images/submit_o.png')",
+        :onmouseout =>  "swapImg2('submit_form','/images/submit.png')"
+  %>
+<% end %>

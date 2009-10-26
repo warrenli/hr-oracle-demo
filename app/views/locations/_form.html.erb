@@ -1,0 +1,28 @@
+<%= error_messages_for 'location' %>
+
+<!--[form:location]-->
+<table>
+
+<tr>
+	<td><label for="location_street_address">Street Address</label></td>
+	<td><%= text_field 'location', 'street_address'  %></td>
+</tr>
+<tr>
+	<td><label for="location_city">City</label></td>
+	<td><%= text_field 'location', 'city'  %></td>
+</tr>
+<tr>
+	<td><label for="location_locale">Area (State/Province)</label></td>
+	<td><%= text_field 'location', 'locale'  %></td>
+</tr>
+<tr>
+	<td><label for="location_postal_code">Zipcode</label></td>
+	<td><%= text_field 'location', 'postal_code'  %></td>
+</tr>
+<tr>
+	<td><label for="location_country">Country</label></td>
+	<td><%= collection_select("location", "country_id" , @countries, "id", "name") %></td>
+<tr>
+</table>
+<!--[eoform:location]-->
+

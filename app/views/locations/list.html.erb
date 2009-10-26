@@ -1,0 +1,79 @@
+<%
+  subset=params[:name]
+  subset="All" if params[:name]==nil 
+%>
+<h1>Location Listing (<%=subset %>)</h1>
+
+<table class="data_table">
+  <tr>
+  <% for column in Location.content_columns %>
+    <th align="left"><%= column.human_name %></th>
+  <% end %>
+    <th align="left">Country</th>
+    <th align="left">Region</th>
+    <th colspan="2">&nbsp;</th>  
+  </tr>
+  
+<%  idx=0 
+    for location in @locations 
+    idx+=1 
+
+%>
+  <tr class="line_style<%= idx.modulo(2)%>">
+  <% for column in Location.content_columns %>
+    <% if column.name=="street_address" %>
+      <% if location.send(column.name)!= nil %> 
+         <td align="left">
+         <%= link_to location.send(column.name), :controller => 'departments' ,:action => 'list_location',
+                  :name => location.send(column.name) %>
+         </td>
+      <% else %>
+         <td>&nbsp;</td>
+      <% end %>
+    <% else %>
+      <td align="left"><%= location.send(column.name) %>
+    <% end %>
+  <% end %>
+    <td align="left"><%= location.country.name %></td>
+    <td align="left"><%= location.country.region.name %></td>
+    <td>
+      <%= link_to image_tag("/images/edit.png", :name =>'edit'+idx.to_s),
+        {:action => 'edit', :id => location},
+        {
+          :onmouseover => "imgChange('edit"+idx.to_s+"','/images/edit_o.png')",
+          :onmouseout =>  "imgChange('edit"+idx.to_s+"','/images/edit.png')" 
+        }
+      %>
+    </td>
+    <td>
+      <%= link_to image_tag("/images/delete.png", :name =>'delete'+idx.to_s), 
+        { :action => 'destroy', :id => location }, 
+        {
+          :confirm => 'Are you sure?' ,
+          :onmouseover => "imgChange('delete"+idx.to_s+"','/images/delete_o.png')",
+          :onmouseout =>  "imgChange('delete"+idx.to_s+"','/images/delete.png')" 
+        }
+      %>
+    </td>
+
+  </tr>
+<% end %>
+</table>
+
+<table class="button_table">
+  <tr>
+    <td align="center" width="33%">
+    <%= link_to image_tag("/images/add_a_location.png", :name =>'add'), 
+      {:action => 'new'},
+      {
+          :onmouseover => "imgChange('add','/images/add_a_location_o.png')",
+          :onmouseout =>  "imgChange('add','/images/add_a_location.png')"       }
+    %>
+    </td>
+  </tr>
+</table>
+
+<br />
+<br />
+<%= will_paginate @locations %>
+<br />
